@@ -71,17 +71,17 @@
           </div>
         </div>
       </div>
-
-      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-      <script src="assets/script.js"></script>
     </div>
     <div id="popUp">
       <div class="container">
         <h2 id="popUpTime">1pm - 2pm</h2>
         <h3>Event</h3>
         <form>
-          <textarea placeholder="Calendar item"></textarea>
+          <textarea
+            id="eventText"
+            class="blue"
+            placeholder="Calendar item"
+          ></textarea>
           <h3>Colour</h3>
           <div id="colorPicker">
             <div class="colorBtn blue active"></div>
@@ -90,9 +90,12 @@
             <div class="colorBtn yellow"></div>
             <div class="colorBtn green"></div>
           </div>
-          <button id="saveBtn" type="submit">Save</button>
+          <button id="saveBtn" type="button">Save</button>
         </form>
       </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="assets/script.js"></script>
   </body>
 </html>

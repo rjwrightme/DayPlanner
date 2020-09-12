@@ -65,6 +65,8 @@ body {
   height: 100px;
   width: 100%;
   z-index: 2;
+  top: 0;
+  left: 0;
 }
 header p {
   color: #6b6b6b;
@@ -192,8 +194,6 @@ textarea {
   resize: none;
   overflow: auto;
   width: 100%;
-  border: 1px solid #a7e8ff;
-  background-color: #e8f9ff;
   padding: 20px;
   font-size: 18px;
 }
