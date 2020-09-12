@@ -5,21 +5,32 @@ let calendarItem = {
     text: '',
     color: 'blue'
 };
+let localTime = parseInt(m.format("H"));
 
 // Set Today's Date using Moment JS
 $('#todayDate').html(`<span>${m.format("Do MMMM")}</span> ${m.format("YYYY")}`);
 $('#todayDay').text(m.format("dddd"));
 
 // Check local storage for existing entries. Render them if they exist.
-if (localStorage.length > 0) {
-    for (let i = 9; i < 18; i++) {
-        let time;
-        i < 10 ? time = 'hour09' : time = 'hour' + i;
+for (let i = 9; i < 18; i++) {
+    let time;
+    i < 10 ? time = 'hour09' : time = 'hour' + i;
+    if (localStorage.length > 0) {
         if (localStorage.getItem(time) !== null) {
             calendarItem = JSON.parse(localStorage.getItem(time));
             $('#' + time).addClass(calendarItem.color);
             $('#' + time).text(calendarItem.text);
         }
+    }
+    if (localTime > 9) {
+        $('.spacer').addClass('past');
+    }
+    if (i < localTime) {
+        $('#' + time).parent().parent().addClass('past');
+        $('#' + time).removeClass();
+        $('#' + time).addClass('hourEvent past');
+    } else if (i == localTime) {
+        $('#' + time).parent().parent().append('<div id="current"></div>');
     }
 }
 

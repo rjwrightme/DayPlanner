@@ -57,7 +57,7 @@ body {
   margin: 0 auto;
 }
 
-.wrapper header {
+header {
   background-color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
   padding: 15px 30px;
@@ -68,6 +68,11 @@ body {
   top: 0;
   left: 0;
 }
+
+header .wrapper {
+  background-color: #fff;
+}
+
 header p {
   color: #6b6b6b;
   font-size: 18px;
@@ -91,6 +96,14 @@ header p {
   align-items: flex-start;
   border-left: 1px solid #efefef;
   border-right: 1px solid #efefef;
+  position: relative;
+}
+
+.hourBlock.past,
+.spacer.past {
+  background-color: #f8f7fa;
+  border: none;
+  color: #c8c8c8;
 }
 
 .spacer {
@@ -116,6 +129,16 @@ header p {
   border-top: 2px solid #f1f1f1;
 }
 
+#current {
+  background-color: #a6de8c;
+  width: 16px;
+  position: absolute;
+  height: 100%;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border: 1px solid #79b95c;
+}
+
 .hourEvent {
   border-top-left-radius: 100px;
   border-bottom-left-radius: 100px;
@@ -129,34 +152,38 @@ header p {
   padding: 0 15px 0 8%;
   text-align: right;
 }
-.hourEvent.past {
-  background-color: #f5f3f8;
-  border-color: #e8e6ed;
-}
-
 .blue {
   background-color: #e8f9ff !important;
   border-color: #a7e8ff !important;
+  color: #54a7c5;
 }
 
 .purple {
   background-color: #f4eaff !important;
   border-color: #ccb4e8 !important;
+  color: #9c83b9;
 }
 
 .red {
   background-color: #ffe6e8 !important;
   border-color: #ff9ca2 !important;
+  color: #d85d67;
 }
 
 .yellow {
   background-color: #fffcc7 !important;
   border-color: #f3eb53 !important;
+  color: #b2ad49;
 }
 
 .green {
   background-color: #e0f8d5 !important;
   border-color: #a6de8c !important;
+  color: #5aa23a;
+}
+.hourEvent.past {
+  background-color: #f5f3f8 !important;
+  border-color: #e8e6ed !important;
 }
 
 /* PopUp Styling */
@@ -176,7 +203,7 @@ header p {
   transform: translate(-50%, -50%);
   background-color: #fff;
   width: 85%;
-  max-width: 500px;
+  max-width: 320px;
 }
 
 .container h2 {
