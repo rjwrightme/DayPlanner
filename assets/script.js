@@ -10,14 +10,31 @@ let calendarItem = {
 $('#todayDate').html(`<span>${m.format("Do MMMM")}</span> ${m.format("YYYY")}`);
 $('#todayDay').text(m.format("dddd"));
 
-// Check local storage for existing entries
+// Check local storage for existing entries. Render them if they exist.
+if (localStorage.length > 0) {
+    for (let i = 9; i < 18; i++) {
+        let time;
+        i < 10 ? time = 'hour09' : time = 'hour' + i;
+        if (localStorage.getItem(time) !== null) {
+            calendarItem = JSON.parse(localStorage.getItem(time));
+            $('#' + time).addClass(calendarItem.color);
+            $('#' + time).text(calendarItem.text);
+        }
+    }
+}
 
-function editEvent(id) {
+function editEvent(time) {
     //show popup
-    $('#popUpTime').text(eventTime(id));
+    hour = time;
+    // check localStorage for previously saved events
+    if (localStorage.getItem(hour) !== null) {
+        calendarItem = JSON.parse(localStorage.getItem(hour));
+        changeColor(calendarItem.color);
+        $('#eventText').val(calendarItem.text);
+    }
+    $('#popUpTime').text(eventTime(time));
     $('#popUp').show();
     $('body').css('overflow', 'hidden');
-    hour = id;
 }
 
 function eventTime(time) {
@@ -53,12 +70,29 @@ function hidePopUp() {
     $('body').css('overflow', 'scroll');
 }
 
-function saveEntry(id) {
+function saveEntry() {
     calendarItem.text = $('#eventText').val();
-    $('#' + id).text(calendarItem.text);
-    $('#' + id).addClass(calendarItem.color);
+    $('#' + hour).text(calendarItem.text);
+    $('#' + hour).removeClass();
+    $('#' + hour).addClass('hourEvent ' + calendarItem.color);
     $('#eventText').val('');
+    localStorage.setItem(hour, JSON.stringify(calendarItem));
     hidePopUp();
+}
+
+function changeColor(color) {
+    // remove 'active' class from all colors
+    let colors = $('#colorPicker').children();
+    for (let i = 0; i < colors.length; i++) {
+        $(colors[i]).removeClass('active');
+        if ($(colors[i]).hasClass(color)) {
+            // add 'active' class to new color
+            $(colors[i]).addClass('active');
+        }
+    }
+    // update textarea to show color
+    $('#eventText').removeClass();
+    $('#eventText').addClass(color);
 }
 
 // Event Handlers
@@ -78,21 +112,12 @@ $('#popUp').on('click', function (e) {
 
 // save calendar entry
 $('#saveBtn').on('click', function () {
-    saveEntry(hour);
+    saveEntry();
     hidePopUp();
 });
 
 // change calendar item color
 $('#colorPicker').on('click', function (e) {
     calendarItem.color = e.target.classList[1];
-    // remove 'active' class from all colors
-    let colors = $('#colorPicker').children();
-    for (let i = 0; i < colors.length; i++) {
-        $(colors[i]).removeClass('active');
-    }
-    // add 'active' class to new color
-    $(e.target).addClass('active');
-    // update textarea to show color
-    $('#eventText').removeClass();
-    $('#eventText').addClass(calendarItem.color);
+    changeColor(calendarItem.color);
 });
