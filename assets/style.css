@@ -21,7 +21,8 @@ h5,
 h6,
 p,
 ol,
-ul {
+ul,
+textarea {
   font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
@@ -60,7 +61,10 @@ body {
   background-color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
   padding: 15px 30px;
-  position: relative;
+  position: fixed;
+  height: 100px;
+  width: 100%;
+  z-index: 2;
 }
 header p {
   color: #6b6b6b;
@@ -88,7 +92,7 @@ header p {
 }
 
 .spacer {
-  height: 20px;
+  height: 110px;
   width: 100%;
   background-color: #fff;
   border: 1px solid #efefef;
@@ -127,27 +131,101 @@ header p {
   background-color: #f5f3f8;
   border-color: #e8e6ed;
 }
-.hourEvent.blue {
+
+.blue {
+  background-color: #e8f9ff !important;
+  border-color: #a7e8ff !important;
+}
+
+.purple {
+  background-color: #f4eaff !important;
+  border-color: #ccb4e8 !important;
+}
+
+.red {
+  background-color: #ffe6e8 !important;
+  border-color: #ff9ca2 !important;
+}
+
+.yellow {
+  background-color: #fffcc7 !important;
+  border-color: #f3eb53 !important;
+}
+
+.green {
+  background-color: #e0f8d5 !important;
+  border-color: #a6de8c !important;
+}
+
+/* PopUp Styling */
+#popUp {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: calc(100vh - 100px);
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+#popUp .container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  width: 85%;
+  max-width: 500px;
+}
+
+.container h2 {
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px -3px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.container h3 {
+  padding: 10px 20px;
+}
+
+textarea {
+  outline: none;
+  resize: none;
+  overflow: auto;
+  width: 100%;
+  border: 1px solid #a7e8ff;
   background-color: #e8f9ff;
-  border-color: #a7e8ff;
+  padding: 20px;
+  font-size: 18px;
 }
 
-.hourEvent.purple {
-  background-color: #f4eaff;
-  border-color: #ccb4e8;
+textarea::placeholder {
+  color: rgba(0, 0, 0, 0.2);
 }
 
-.hourEvent.red {
-  background-color: #ffe6e8;
-  border-color: #ff9ca2;
+#colorPicker {
+  display: flex;
+  padding: 0 20px;
 }
 
-.hourEvent.yellow {
-  background-color: #fffcc7;
-  border-color: #f3eb53;
+.colorBtn {
+  width: 45px;
+  height: 45px;
+  border: 2px solid;
+  border-radius: 50%;
+  margin: 5px;
 }
 
-.hourEvent.green {
-  background-color: #e0f8d5;
-  border-color: #a6de8c;
+.colorBtn.active {
+  border: 6px solid;
+}
+
+#saveBtn {
+  background-color: #a6de8c;
+  border: 1px solid #79b95c;
+  outline: none;
+  color: #fff;
+  font-size: 26px;
+  padding: 5px 20px;
+  margin: 15px auto;
+  display: block;
 }
